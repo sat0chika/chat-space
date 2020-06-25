@@ -12,9 +12,10 @@
 ## messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|text|text|null: false|
+|text|text||
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
+|image|string||
 ### Association
 - belongs_to :user
 - belongs_to :group
@@ -24,7 +25,7 @@
 |------|----|-------|
 |email|string|null: false|
 |password|string|null: false|
-|username|string|null: false|
+|name|string|null: false|
 ### Association
 - has_many :messages
 - has_many :groups, through: :groups_users
@@ -34,7 +35,6 @@
 |Column|Type|Options|
 |------|----|-------|
 |title|text|null: false|
-|user_id|integer|null: false|
 ### Association
 - has_many :messages
 - has_many :users, through: :groups_users
