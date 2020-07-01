@@ -4,14 +4,16 @@
       .side_bar__user-name__top-items__name
         masa
       .side_bar__user-name__top-items__icons
-        = link_to 'https://fontawesome.com/icons/edit?style=regular', class: "icons__edit" do
+        = link_to '/groups/new', class: "icons__edit" do
           = icon('far', 'edit')
-        = link_to 'https://fontawesome.com/icons/cog?style=solid', class: "icons__setting" do
+        = link_to '/users/edit', class: "icons__setting" do
           = icon('fas', 'cog')
         .side_bar__user-name__top-items__icons__far
   .side_bar__group-list
-    .side_bar__group-list__secound-items
-      .side_bar__group-list__secound-items__group-name
-        tech camp
-      .side_bar__group-list__secound-items__first-message
-        まだメッセージがありません
+    - current_user.groups.each do |group|
+      .side_bar__group-list__secound-items
+        = link_to '/groups/:id/edit' do
+          .side_bar__group-list__secound-items__group-name
+            = group.name
+          .side_bar__group-list__secound-items__first-message
+            メッセージはまだありません
