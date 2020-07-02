@@ -3,39 +3,27 @@
     .main_chat__group-info__top-items
       .main_chat__group-info__top-items__left
         .main_chat__group-info__top-items__left__group-name
-          test
-        .main_chat__group-info__top-items__left__member-name
-          Member : name
+          =@group.name
+        %ul.main_chat__group-info__top-items__left__member-list
+          Member :
+          %li.main_chat__group-info__top-items__left__member-list__member
+            -@group.users.each do |user|
+              = user.name + " "
       .main_chat__group-info__top-items__edit-btn
-        = link_to '#', class: "edit-btn" do
+        = link_to edit_group_path(@group), class: "edit-btn" do
           Edit
+
   .main_chat__message-list
-    .main_chat__message-list__all
-      .main_chat__message-list__all__name-date
-        .main_chat__message-list__all__name-date__name
-          masa
-        .main_chat__message-list__all__name-date__date
-          2019/11/20(Wed) 17:43:01
-      .main_chat__message-list__all__message
-        おはよう！
-      .main_chat__message-list__all__name-date
-        .main_chat__message-list__all__name-date__name
-          masa
-        .main_chat__message-list__all__name-date__date
-          2019/11/20(Wed) 17:43:34
-      .main_chat__message-list__all__message
-        今日は夜から雨
+    = render @messages
 
   .main_chat__message-form
     .main_chat__message-form__bottom-items
       .main_chat__message-form__bottom-items__new-message
-        .main_chat__message-form__bottom-items__new-message__input-text
-          %input.text{:placeholder => "type a message"}
-        .main_chat__message-form__bottom-items__new-message__img
-          %label{class: "input-box__image"}
-            = icon('fas', 'image',)
-            %input{type: "file", class: 'file'}
-      .main_chat__message-form__bottom-items__send-btn
-        %button{type: "submit", class: 'btn'}
-          .letter
-            Send
+        = form_with model: [@group, @message], html: {class: "message-form-1"}, local: true do |f|
+          .main_chat__message-form__bottom-items__new-message__input-text
+            = f.text_field :content, class: 'text', placeholder: 'type a message'
+            = f.label :image, class: 'input-text' do
+              = icon('far', 'image', class: 'fa-image')
+              = f.file_field :image, class: 'file'
+          .main_chat__message-form__bottom-items__new-message__send-btn
+            = f.submit 'Send', class: 'btn'
