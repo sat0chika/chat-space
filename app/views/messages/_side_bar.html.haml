@@ -6,7 +6,7 @@
       .side_bar__user-name__top-items__icons
         = link_to '/groups/new', class: "icons__edit" do
           = icon('far', 'edit')
-        = link_to edit_user_path(current_user), class: "icons__setting" do
+        = link_to '/users/edit', class: "icons__setting" do
           = icon('fas', 'cog')
         .side_bar__user-name__top-items__icons__far
   .side_bar__group-list
