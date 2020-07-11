@@ -2,7 +2,7 @@
   .side_bar__user-name
     .side_bar__user-name__top-items
       .side_bar__user-name__top-items__name
-        masa
+        = current_user.name
       .side_bar__user-name__top-items__icons
         = link_to '/groups/new', class: "icons__edit" do
           = icon('far', 'edit')
